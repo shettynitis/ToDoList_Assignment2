@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-loadbalancer-service  # Choose a meaningful name here
+spec:
+  type: LoadBalancer                # Change the Service type to LoadBalancer
+  ports:
+    - port: 5000                    # External port
+      targetPort: 5000              # Port on the container
+  selector:
+    app: flask-app                  # Ensure this matches your pod's label
+
