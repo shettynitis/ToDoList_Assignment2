@@ -27,7 +27,20 @@ spec:
           value: "mongo-service"
         - name: MONGO_PORT
           value: "27017"
-
+        livenessProbe:
+          httpGet:
+            path: /health  # Ensure your app has an endpoint like /health
+            port: 5000
+          initialDelaySeconds: 15  # Delay before starting liveness checks
+          periodSeconds: 10        # Check every 10 seconds
+          failureThreshold: 3      # Restart after 3 failures
+        readinessProbe:
+          httpGet:
+            path: /health  # Same endpoint can be used for readiness
+            port: 5000
+          initialDelaySeconds: 5   # Shorter delay for readiness check
+          periodSeconds: 5         # Check every 5 seconds
+          failureThreshold: 3
 ---
 apiVersion: v1
 kind: Service

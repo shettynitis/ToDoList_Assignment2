@@ -118,6 +118,14 @@ def search():
 @app.route("/about")
 def about():
 	return render_template('credits.html',t=title,h=heading)
+# Probing Success and Failure
+# @app.route('/health')
+# def health():
+#     return "OK", 200
+#
+# @app.route('/health')
+# def health():
+#     return "FAIL", 500  # Simulate a failure with a 500 error
 
 if __name__ == "__main__":
 	env = os.environ.get('FLASK_ENV', 'development')
