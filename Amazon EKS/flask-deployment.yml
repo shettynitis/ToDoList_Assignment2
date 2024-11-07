@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: shettyniti/to-do-app:v2  # Use the Docker Hub image
+        image: shettyniti/to-do-app:v3_healthy  # Use the Docker Hub image
         ports:
         - containerPort: 5000
         env:

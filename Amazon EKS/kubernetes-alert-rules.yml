@@ -1,0 +1,12 @@
+groups:
+  - name: kubernetes-app-alerts
+    rules:
+      - alert: HighProbeFailure
+        expr: kube_pod_container_status_last_terminated_reason{reason="ProbeError"} > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of probe failures in pod"
+          description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} is experiencing frequent probe failures."
+
