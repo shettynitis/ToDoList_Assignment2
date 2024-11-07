@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: flask-app
 spec:
-  replicas: 1  # For load balancing
+  replicas: 2  # For load balancing
   strategy:
     type: RollingUpdate
     rollingUpdate:
