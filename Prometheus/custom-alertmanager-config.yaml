@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"monitoring.coreos.com/v1alpha1","kind":"AlertmanagerConfig","metadata":{"annotations":{},"labels":{"alertmanager":"prometheus-kube-prometheus-alertmanager"},"name":"custom-alertmanager-config","namespace":"default"},"spec":{"receivers":[{"name":"slack-notifications","slackConfigs":[{"apiURL":{"key":"aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDA3VkJBWDVCQVMvQjA3VjNGNVVaMVYvQlhPZW4xdmVpTmwxdXBaTjdsa1Q2OFVi","name":"slack-webhook-secret"},"channel":"#assignment2","sendResolved":true}]}],"route":{"groupBy":["alertname"],"receiver":"slack-notifications"}}}
+  creationTimestamp: "2024-11-10T10:20:09Z"
+  generation: 1
+  labels:
+    alertmanager: prometheus-kube-prometheus-alertmanager
+  name: custom-alertmanager-config
+  namespace: default
+  resourceVersion: "1151564"
+  uid: dbffa16f-f7a0-40c2-bd4e-3e79f3c5e655
+spec:
+  receivers:
+  - name: slack-notifications
+    slackConfigs:
+    - apiURL:
+        key: aHR0cHM6Ly9ob29rcy5zbGFjay5jb20vc2VydmljZXMvVDA3VkJBWDVCQVMvQjA3VjNGNVVaMVYvQlhPZW4xdmVpTmwxdXBaTjdsa1Q2OFVi
+        name: slack-webhook-secret
+      channel: '#assignment2'
+      sendResolved: true
+  route:
+    groupBy:
+    - alertname
+    receiver: slack-notifications

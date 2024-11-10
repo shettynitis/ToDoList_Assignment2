@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: alert-rules
+  namespace: default
+  labels:
+    release: prometheus  # This label is required for Prometheus to pick up the rule
+spec:
+  groups:
+    - name: example.rules
+      rules:
+        - alert: PodFailure
+          expr: kube_pod_container_status_restarts_total > 1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pod restart count high"
+            description: "The pod is restarting frequently (more than once)."

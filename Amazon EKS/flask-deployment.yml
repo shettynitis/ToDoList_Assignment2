@@ -16,10 +16,15 @@ spec:
     metadata:
       labels:
         app: flask-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5000" 
+        prometheus.io/path: "/metrics"
     spec:
       containers:
       - name: flask-app
         image: shettyniti/to-do-app:v3_healthy  # Use the Docker Hub image
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
         env:

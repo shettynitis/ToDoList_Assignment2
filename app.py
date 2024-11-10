@@ -3,6 +3,8 @@ from pymongo import MongoClient # Database connector
 from bson.objectid import ObjectId # For ObjectId to work
 from bson.errors import InvalidId # For catching InvalidId exception for ObjectId
 import os
+from prometheus_flask_exporter import PrometheusMetrics
+
 
 mongodb_host = os.environ.get('MONGO_HOST', 'localhost')
 mongodb_port = int(os.environ.get('MONGO_PORT', '27017'))
@@ -11,9 +13,15 @@ db = client.camp2016    #Select the database
 todos = db.todo #Select the collection
 
 app = Flask(__name__)
-title = "TODO with Flask"
-heading = "ToDo Reminder"
+title = "TODO App with Flask"
+heading = "ToDo Reminder App"
+
+# Initialize Prometheus metrics
+metrics = PrometheusMetrics(app)
 #modify=ObjectId()
+
+# Create a metric to track requests
+# REQUEST_COUNT = Counter('app_requests_total', 'Total number of requests')
 
 def redirect_url():
 	return request.args.get('next') or \
@@ -122,10 +130,10 @@ def about():
 # @app.route('/health')
 # def health():
 #     return "OK", 200
-#
-# @app.route('/health')
-# def health():
-#     return "FAIL", 500  # Simulate a failure with a 500 error
+# 
+@app.route('/health')
+def health():
+    return "FAIL", 500  # Simulate a failure with a 500 error
 
 if __name__ == "__main__":
 	env = os.environ.get('FLASK_ENV', 'development')

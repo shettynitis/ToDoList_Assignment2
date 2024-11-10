@@ -1,0 +1,11 @@
+data:
+  alertmanager.yaml: |
+    route:
+      receiver: 'slack-notifications'
+    receivers:
+      - name: slack-notifications
+        slack_configs:
+          - api_url: 'https://hooks.slack.com/services/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'
+            channel: '#assignment2'
+            send_resolved: true
+            text: "Alert: {{ .CommonLabels.alertname }} \nDescription: {{ .CommonAnnotations.description }}"
