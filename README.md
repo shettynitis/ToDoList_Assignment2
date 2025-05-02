@@ -1,4 +1,4 @@
-# To Do Web Aoo
+# To Do Web App
 
 This project demonstrates how to containerize and deploy a full-stack To-Do web application using Flask and MongoDB across Kubernetes environments. It includes deployments on **Minikube (local)** and **AWS EKS (cloud)**, with advanced Kubernetes features such as replication controllers, rolling updates, health probes, and optional alerting using Prometheus and Slack.
 
